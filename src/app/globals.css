@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gold: #d4a017;
+  --gold-light: #f8cc4a;
+  --gold-dark: #b8860b;
+  --noir: #0a0a0a;
+  --noir-light: #141414;
+  --noir-mid: #1e1e1e;
+  --text-primary: #f5f0e8;
+  --text-secondary: #a89880;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background-color: var(--noir);
+  color: var(--text-primary);
+  font-family: "Noto Serif JP", "Noto Sans JP", Georgia, serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Gold divider utility */
+.gold-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+/* Stamp card base */
+.stamp-card {
+  border: 1px solid rgba(212, 160, 23, 0.2);
+  background: linear-gradient(135deg, #141414 0%, #1a1a1a 100%);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--noir);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gold-dark);
+  border-radius: 2px;
+}
+
+/* Selection color */
+::selection {
+  background: rgba(212, 160, 23, 0.3);
+  color: var(--text-primary);
+}
