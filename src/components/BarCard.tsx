@@ -10,6 +10,7 @@ interface BarCardProps {
 
 const BAR_IMAGES: Partial<Record<string, string>> = {
   daisy: "/images/bars/daisy.jpg",
+  fortuna: "/images/bars/fortuna.jpg",
 };
 
 export default function BarCard({ bar, hasStamp }: BarCardProps) {
