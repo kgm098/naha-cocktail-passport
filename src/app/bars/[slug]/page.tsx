@@ -8,6 +8,10 @@ import { BAR_SLUGS } from "@/lib/bars";
 const BAR_IMAGES: Partial<Record<string, string>> = {
   daisy: "/images/bars/daisy.jpg",
   fortuna: "/images/bars/fortuna.jpg",
+  sou: "/images/bars/sou.jpg",
+  stir: "/images/bars/stir.jpg",
+  hammock: "/images/bars/hammock.jpg",
+  "whisky-japan": "/images/bars/whisky-japan.jpg",
 };
 
 export function generateStaticParams() {
