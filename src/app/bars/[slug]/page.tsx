@@ -1,8 +1,13 @@
 import { getBar } from "@/lib/bars";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, MapPin, Clock, Instagram, Globe } from "lucide-react";
 import { BAR_SLUGS } from "@/lib/bars";
+
+const BAR_IMAGES: Partial<Record<string, string>> = {
+  daisy: "/images/bars/daisy.jpg",
+};
 
 export function generateStaticParams() {
   return BAR_SLUGS.map((slug) => ({ slug }));
@@ -30,14 +35,25 @@ export default async function BarDetailPage({
         </div>
       </div>
 
-      {/* Hero image placeholder */}
+      {/* Hero image */}
       <div className="h-52 bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] flex items-center justify-center relative overflow-hidden">
-        <div className="text-[80px] font-serif font-bold text-[#1e1e1e] select-none">
-          {bar.shortName[0]}
-        </div>
-        <div className="absolute bottom-4 left-5">
+        {BAR_IMAGES[bar.slug] ? (
+          <Image
+            src={BAR_IMAGES[bar.slug]!}
+            alt={bar.name}
+            fill
+            className="object-cover object-center"
+            sizes="(max-width: 448px) 100vw, 448px"
+            priority
+          />
+        ) : (
+          <div className="text-[80px] font-serif font-bold text-[#1e1e1e] select-none">
+            {bar.shortName[0]}
+          </div>
+        )}
+        <div className="absolute bottom-4 left-5 z-10">
           <div className="text-[9px] tracking-[0.3em] text-gold-700 uppercase mb-1">BAR</div>
-          <div className="text-xl font-serif font-bold text-[#e8e0d4]">{bar.name}</div>
+          <div className="text-xl font-serif font-bold text-[#e8e0d4] drop-shadow-lg">{bar.name}</div>
         </div>
       </div>
 

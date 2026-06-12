@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Bar } from "@/types";
 import { MapPin, ArrowRight } from "lucide-react";
 
@@ -7,7 +8,13 @@ interface BarCardProps {
   hasStamp: boolean;
 }
 
+const BAR_IMAGES: Partial<Record<string, string>> = {
+  daisy: "/images/bars/daisy.jpg",
+};
+
 export default function BarCard({ bar, hasStamp }: BarCardProps) {
+  const imageSrc = BAR_IMAGES[bar.slug];
+
   return (
     <Link href={`/bars/${bar.slug}`}>
       <div
@@ -19,13 +26,23 @@ export default function BarCard({ bar, hasStamp }: BarCardProps) {
           }
         `}
       >
-        {/* Placeholder image area */}
-        <div className="h-40 bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] flex items-center justify-center relative">
-          <div className="text-[#2a2a2a] text-5xl font-serif font-bold">
-            {bar.shortName[0]}
-          </div>
+        {/* Image area */}
+        <div className="h-40 bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] flex items-center justify-center relative overflow-hidden">
+          {imageSrc ? (
+            <Image
+              src={imageSrc}
+              alt={bar.name}
+              fill
+              className="object-cover object-center"
+              sizes="(max-width: 448px) 100vw, 448px"
+            />
+          ) : (
+            <div className="text-[#2a2a2a] text-5xl font-serif font-bold">
+              {bar.shortName[0]}
+            </div>
+          )}
           {hasStamp && (
-            <div className="absolute top-3 right-3 bg-gold-700 text-[#0a0a0a] text-[10px] font-bold px-2 py-0.5 rounded-full tracking-wider uppercase">
+            <div className="absolute top-3 right-3 bg-gold-700 text-[#0a0a0a] text-[10px] font-bold px-2 py-0.5 rounded-full tracking-wider uppercase z-10">
               STAMP ✓
             </div>
           )}
